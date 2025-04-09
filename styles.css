@@ -53,6 +53,8 @@ ul {
 img {
     max-width: 100%;
     height: auto;
+    display: block; /* يمنع الفراغ تحت الصور */
+    object-fit: cover; /* يضمن تغطية المساحة المخصصة للصورة دون تشويه */
 }
 
 .section-header {
@@ -156,6 +158,7 @@ nav .container {
 .logo img {
     height: 60px;
     width: auto;
+    object-fit: contain; /* يحافظ على نسبة الصورة */
 }
 
 .nav-links {
@@ -243,6 +246,16 @@ nav .container {
 .hero-image {
     flex: 1;
     animation: float 3s ease-in-out infinite;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    max-height: 500px; /* تحديد ارتفاع أقصى */
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* يضمن تغطية المساحة دون تشويه */
 }
 
 @keyframes float {
@@ -271,9 +284,16 @@ nav .container {
 
 .about-image {
     flex: 1;
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
     box-shadow: var(--shadow);
+    height: 400px; /* تحديد ارتفاع ثابت */
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* يضمن تغطية المساحة دون تشويه */
 }
 
 .about-text {
@@ -365,9 +385,13 @@ nav .container {
     flex: 0 0 auto;
     text-align: center;
     width: 280px;
+    height: 500px; /* تحديد ارتفاع ثابت */
 }
 
 .screenshot img {
+    width: 100%;
+    height: 450px; /* تحديد ارتفاع ثابت للصورة */
+    object-fit: cover; /* يضمن تغطية المساحة دون تشويه */
     border-radius: 15px;
     box-shadow: var(--shadow);
     border: 2px solid var(--border-color);
@@ -442,6 +466,16 @@ nav .container {
 .download-image {
     flex: 1;
     animation: float 3s ease-in-out infinite;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    height: 400px; /* تحديد ارتفاع ثابت */
+}
+
+.download-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* يضمن تغطية المساحة دون تشويه */
 }
 
 /* ===== اتصل بنا ===== */
@@ -543,7 +577,9 @@ footer {
 
 .footer-logo img {
     height: 80px;
+    width: auto;
     margin-bottom: 15px;
+    object-fit: contain; /* يحافظ على نسبة الصورة */
 }
 
 .footer-links {
@@ -562,7 +598,7 @@ footer {
     margin-bottom: 10px;
 }
 
-.footer-links ul li a {git
+.footer-links ul li a {
     color: white;
     transition: var(--transition);
 }
@@ -586,3 +622,264 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.social-icons a:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== استجابة للشاشات (Responsive Design) ===== */
+
+/* تصميم اللوح الكبيرة (Tablets) */
+@media (max-width: 992px) {
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.6rem;
+    }
+
+    .about-content,
+    .download-content {
+        flex-direction: column;
+    }
+
+    .about-image,
+    .download-image {
+        margin-bottom: 30px;
+        width: 100%;
+        max-width: 500px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .screenshot {
+        width: 220px;
+        height: 420px;
+    }
+    
+    .screenshot img {
+        height: 370px;
+    }
+}
+
+/* تصميم اللوح الصغيرة والهواتف (Small Tablets & Mobile) */
+@media (max-width: 768px) {
+    /* تعديل القائمة للهواتف */
+    .toggle-menu {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        background-color: white;
+        flex-direction: column;
+        gap: 0;
+        box-shadow: var(--shadow);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .nav-links.active {
+        max-height: 500px;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links li a {
+        display: block;
+        padding: 15px 20px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    /* تعديل الهيرو للهواتف */
+    .hero {
+        padding: 130px 0 70px;
+    }
+
+    .hero .container {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cta-buttons {
+        justify-content: center;
+    }
+    
+    .hero-image {
+        height: 350px;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    /* تعديل التقسيمات الثنائية للهواتف */
+    .about-content,
+    .download-content,
+    .contact-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    /* تعديل المميزات للهواتف */
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* تعديل تسلسل الأقسام للهواتف */
+    .about-image {
+        order: -1;
+        height: 300px;
+    }
+
+    .about-text {
+        text-align: center;
+    }
+
+    .download-text {
+        text-align: center;
+    }
+
+    .download-links {
+        justify-content: center;
+    }
+    
+    .download-image {
+        height: 300px;
+    }
+
+    /* تعديل الاتصال بنا للهواتف */
+    .contact-info {
+        order: 1;
+    }
+
+    /* تعديل فوتر للهواتف */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 20px;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+    
+    .screenshot {
+        width: 180px;
+        height: 380px;
+    }
+    
+    .screenshot img {
+        height: 330px;
+    }
+}
+
+/* تصميم الهواتف الصغيرة */
+@media (max-width: 480px) {
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .about-text h3,
+    .download-text h3 {
+        font-size: 1.6rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+    }
+
+    .contact-form {
+        padding: 30px 20px;
+    }
+    
+    .hero-image, 
+    .about-image, 
+    .download-image {
+        height: 250px;
+    }
+    
+    .screenshot {
+        width: 160px;
+        height: 340px;
+    }
+    
+    .screenshot img {
+        height: 290px;
+    }
+}
+
+/* إضافة لتشغيل القائمة */
+.nav-links.active {
+    max-height: 500px;
+}
+
+/* إضافة لتشغيل الشرائح */
+.screenshot-track {
+    scroll-snap-type: x mandatory;
+}
+
+.screenshot {
+    scroll-snap-align: center;
+}
